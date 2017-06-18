@@ -8,13 +8,12 @@ public class ConnectionManager {
 
     private static final int timout = 3000;
     private static final int Port = 6880;
-    private static final String IpAddress = "";
     private static final boolean WhileConnected = true; 
 
     public static void main (String args[]){
         try {
-            ServerSocket input = new ServerSocket(IpAddress, Port);
-
+            ServerSocket input = new ServerSocket(Port);
+            System.out.println("Starting server...");
             while (WhileConnected){
                 try (
                     Socket connectionSocket = input.accept();
@@ -25,9 +24,13 @@ public class ConnectionManager {
                     System.out.println("Sending message: " + TCPclientMess);
                     optToClient.writeBytes(TCPclientMess);
                 }
-            }
-
-            
+                catch (Exception e) {
+                    System.out.println("Error sending message: " + e);
+                }
+            }            
+        }
+        catch (Exception e){
+            System.out.println("Error: " + e);
         }
     }
 }
