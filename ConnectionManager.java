@@ -2,6 +2,7 @@ import java.io.BufferedInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.io.InputStream;
+import java.util.*;
 
 public class ConnectionManager {
 
@@ -25,9 +26,16 @@ public class ConnectionManager {
                         System.out.println("Socket is connected!");
                     }
                     byte[] buffer = new byte[bufferSize];
+                    List<String> messageList = new ArrayList<>();
                     while((read = inputStream.read(buffer)) != -1){
                         String message = new String(buffer, "ASCII").trim();
-                        System.out.println(message);
+                        messageList.add(message);
+                        buffer = new byte[bufferSize];
+                        if (read < bufferSize && read > 0){
+                            System.out.println("*** EOM ***" + read);
+                            System.out.println(messageList);
+                            messageList.clear();
+                        }
                     }
                 }
                 catch (Exception e) {
@@ -40,9 +48,6 @@ public class ConnectionManager {
         }
         catch (Exception e){
             System.out.println("Error: " + e);
-        }
-        finally {
-            inputStream.close();
         }
     }
 }
