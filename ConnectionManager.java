@@ -34,7 +34,7 @@ public class ConnectionManager {
                         if (read < bufferSize && read > 0){
                             System.out.println("*** EOM ***" + read);
                             System.out.println(messageList);
-                            MessageDecoder.parse(messageList);
+                            String returnMessage = MessageDecoder.parse(messageList);
                             messageList.clear();
                         }
                     }

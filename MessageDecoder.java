@@ -19,7 +19,7 @@ public class MessageDecoder {
     }
 
     private static String generateStatus(){
-        String status = "";
+        String status = PrinterStatus.GenerateStatusMessage();
         return status;
     }
 
