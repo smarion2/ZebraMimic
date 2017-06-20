@@ -1,8 +1,12 @@
 import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.BufferedWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.io.InputStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConnectionManager {
 
@@ -33,8 +37,15 @@ public class ConnectionManager {
                         buffer = new byte[bufferSize];
                         if (read < bufferSize && read > 0){
                             System.out.println("*** EOM ***" + read);
-                            System.out.println(messageList);
-                            String returnMessage = MessageDecoder.parse(messageList);
+                            String joinedMessage = String.join("", messageList);
+                            //System.out.println(joinedMessage);
+                            String returnMessage = MessageDecoder.parse(joinedMessage);
+                            OutputStream outputStream = connectionSocket.getOutputStream();
+                            OutputStreamWriter streamWriter = new OutputStreamWriter(outputStream);
+                            BufferedWriter writer = new BufferedWriter(streamWriter);
+                            System.out.println("Sending message: " + returnMessage);
+                            writer.write(returnMessage);
+                            writer.flush();
                             messageList.clear();
                         }
                     }

@@ -5,7 +5,8 @@ import java.net.URL;
 import java.io.OutputStream;
 
 public class CreateTagImage {
-    public static void QueryAPI(String zpl) {
+
+    public static void queryAPI(String zpl) {
         String type = "application/x-www-form-urlencoded";
         String encodedData = URLEncoder.encode(zpl);
         // dont forget to change dpmm i forget what the printer uses right now.
