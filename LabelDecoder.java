@@ -2,6 +2,7 @@ import java.util.Hashtable;
 import java.util.Random;
 
 public class LabelDecoder {
+    private static int labelNumber = 0;
     public static String parseLabel(String label){        
         Hashtable<String, String> fieldNumberTable = new Hashtable<String, String>(); 
         boolean reportRfResults = false;
@@ -9,7 +10,8 @@ public class LabelDecoder {
         String epc = "";
         String tid = GenerateRandomTID();
         String hvString = "";
-
+        labelNumber++;
+        CreateTagImage.queryAPI(label, Integer.toString(labelNumber));
         String[] messageGroups = label.split("\\^FS");
         for (int i = 0; i < messageGroups.length; i++){
             String[] messageLines = messageGroups[i].split("[\\^~]");
