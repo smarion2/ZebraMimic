@@ -61,7 +61,7 @@ public class PrinterStatus {
         statusMessage += ",";
         statusMessage += _password;
         statusMessage += ",";
-        statusMessage += _staticRamIsInstalled ? "1," : "0,";
+        statusMessage += _staticRamIsInstalled ? "1" : "0";
         return statusMessage;
     }
 }

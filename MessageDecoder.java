@@ -4,18 +4,12 @@ public class MessageDecoder {
         if (message.contains("~HS")){
             // parse status message
             System.out.println("Generating Status Message...");
-            response = generateStatus();
+            response = PrinterStatus.generateStatusMessage();
         }
         if (message.contains("^XA")){
             // result message
-            //response = 
-            LabelDecoder.parseLabel(message);
+            response = LabelDecoder.parseLabel(message);
         }        
         return response;
-    }
-
-    private static String generateStatus(){
-        String status = PrinterStatus.generateStatusMessage();
-        return status;
     }
 }
