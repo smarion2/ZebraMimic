@@ -9,7 +9,7 @@ public class CreateTagImage {
     public static void queryAPI(String zpl) {
         String type = "application/x-www-form-urlencoded";
         String encodedData = URLEncoder.encode(zpl);
-        // dont forget to change dpmm i forget what the printer uses right now.
+        //dont forget to change dpmm i forget what the printer uses right now.
         URL url = new URL("http://api.labelary.com/v1/printers/{dpmm}/labels/4x6/0/");
         HttpURLConnection conn = (HttpURLConnection)url.openConnection();
         conn.setDoOutput(true);
@@ -17,7 +17,7 @@ public class CreateTagImage {
         conn.setRequestProperty("Content-Type", type);
         conn.setRequestProperty("Content-length", String.valueOf(encodedData.length()));
         OutputStream stream = conn.getOutputStream();
-        steam.write(encodedData.getBytes());
+        stream.write(encodedData.getBytes());
 
         // convert bytes to image and save to folder.
     }

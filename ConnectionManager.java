@@ -17,7 +17,7 @@ public class ConnectionManager {
     private static InputStream inputStream = null;
     public static int tagSuccessChance = 50;
 
-    public static void main (String args[]){
+    public static void startServer(){
         try {
             ServerSocket input = new ServerSocket(port);
             System.out.println("Starting server...");
