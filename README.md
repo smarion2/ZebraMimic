@@ -1,9 +1,4 @@
- _____    _                 __  __ _           _      
- |__  /___| |__  _ __ __ _  |  \/  (_)_ __ ___ (_) ___ 
-   / // _ \ '_ \| '__/ _` | | |\/| | | '_ ` _ \| |/ __|
-  / /|  __/ |_) | | | (_| | | |  | | | | | | | | | (__ 
- /____\___|_.__/|_|  \__,_| |_|  |_|_|_| |_| |_|_|\___|
-                                                        
+# Zebra Mimic
 
 Emulate printing for a Zebra RFID printer to run on a pine64 (or any tcp device for that matter)
 
