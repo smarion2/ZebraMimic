@@ -10,8 +10,6 @@ import java.util.List;
 
 public class ConnectionManager {
 
-    private static final int timout = 3000;
-    private static final int port = 9100;
     private static final boolean whileConnected = true; 
     private static final int bufferSize = 1024;
     private static InputStream inputStream = null;
@@ -19,7 +17,7 @@ public class ConnectionManager {
 
     public static void startServer(){
         try {
-            ServerSocket input = new ServerSocket(port);
+            ServerSocket input = new ServerSocket(Settings.port);
             System.out.println("Starting server...");
 
             while (whileConnected){

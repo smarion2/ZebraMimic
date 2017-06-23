@@ -11,7 +11,11 @@ public class LabelDecoder {
         String tid = GenerateRandomTID();
         String hvString = "";
         labelNumber++;
-        CreateTagImage.queryAPI(label, Integer.toString(labelNumber));
+
+        if (Settings.createTagImages){
+            CreateTagImage.queryAPI(label, Integer.toString(labelNumber));
+        }
+        
         String[] messageGroups = label.split("\\^FS");
         for (int i = 0; i < messageGroups.length; i++){
             String[] messageLines = messageGroups[i].split("[\\^~]");
@@ -51,7 +55,12 @@ public class LabelDecoder {
             }
         }
         if (reportRfResults == true){
-            responseMessage += SimulatePrintSuccess();
+            if (Settings.simulateTagVoids){
+                responseMessage += SimulatePrintSuccess();
+            }
+            else {
+                responseMessage += "0+,0";
+            }
         }
         if (hvString != ""){
             responseMessage += hvString;
@@ -73,7 +82,7 @@ public class LabelDecoder {
         Random rand = new Random();
         String result = "";
         int roll = rand.nextInt(100) + 1;
-        if (roll >= ConnectionManager.tagSuccessChance) {
+        if (roll >= Settings.tagSuccessChance) {
             result = "0+,0";
         }
         else {
