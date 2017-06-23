@@ -10,10 +10,9 @@ import java.util.List;
 
 public class ConnectionManager {
 
-    private static final boolean whileConnected = true; 
-    private static final int bufferSize = 1024;
+    private static boolean whileConnected = true; 
+    private static int bufferSize = 1024;
     private static InputStream inputStream = null;
-    public static int tagSuccessChance = 50;
 
     public static void startServer(){
         try {
