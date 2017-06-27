@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class LabelDecoder {
     private static int labelNumber = 0;
-    public static String parseLabel(String label){        
+    public static String parseLabel(String label) throws InterruptedException {        
         Hashtable<String, String> fieldNumberTable = new Hashtable<String, String>(); 
         boolean reportRfResults = false;
         String responseMessage = "";
@@ -55,16 +55,19 @@ public class LabelDecoder {
             }
         }
         if (reportRfResults == true){
-            if (Settings.simulateTagVoids){
+            if (Settings.simulateTagVoids == true){
                 responseMessage += SimulatePrintSuccess();
             }
             else {
-                responseMessage += "0+,0";
+                responseMessage += "0+,00";
             }
         }
         if (hvString != ""){
             responseMessage += hvString;
-        }
+        }        
+        if (Settings.simulateSleep){
+            Thread.sleep(Settings.sleepTimer);
+        }        
         return responseMessage;
     }
 
