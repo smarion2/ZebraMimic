@@ -73,7 +73,7 @@ public class Settings {
             if (line.hasOption("s")){
                 simulateSleep = true;
                 sleepTimer = Integer.parseInt(line.getOptionValue("s"));
-                System.out.println("Sleep time between tags set at" + line.getOptionValue("s") + " miliseconds");
+                System.out.println("Sleep time between tags set at " + line.getOptionValue("s") + " miliseconds");
             }
         }
         catch(ParseException ex) {

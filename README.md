@@ -12,6 +12,7 @@ Command line options:
 | -p <Port Number> |  Set port number for printer (default 9100) |
 | -t <quantity>    |  Simulate paper out with given quantity of tags |
 | -v <chance>      |  Simulate tag voids with a given percent chance. |
+| -s <timer>       | Simulate printing delay argument in miliseconds | 
 
 
 Only dependancy is Aparche Commons CLI for command line options
