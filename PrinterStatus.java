@@ -9,7 +9,7 @@ public class PrinterStatus {
     private static boolean _bufferIsFull = false;
     private static boolean _diagnosticMode = false;
     private static boolean _partialFormat = false;
-    private static String _unused = "000"; // this is always 000
+    private static String _unused = "000,"; // this is always 000
     private static boolean _ramIsCorrupt = false;
     private static boolean _underTemp = false;
     private static boolean _overTemp = false;
