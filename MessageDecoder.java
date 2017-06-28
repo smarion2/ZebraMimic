@@ -8,7 +8,12 @@ public class MessageDecoder {
         }
         if (message.contains("^XA")){
             // result message
-            response = LabelDecoder.parseLabel(message);
+            try {
+                response = LabelDecoder.parseLabel(message);
+            }
+            catch (Exception e) {
+                System.out.println("Could not parse label");
+            }
         }        
         return response;
     }
