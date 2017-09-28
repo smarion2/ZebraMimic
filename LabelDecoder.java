@@ -2,9 +2,15 @@ import java.util.Hashtable;
 import java.util.Random;
 
 public class LabelDecoder {
-    private static int labelNumber = 0;
+    private int labelNumber = 0;
     private static Settings settings = new Settings();
-    public static String parseLabel(String label) throws InterruptedException {        
+    private static Random rand = new Random();
+
+    public LabelDecoder(Settings _settings){
+        settings = _settings;
+    }
+
+    public String parseLabel(String label) throws InterruptedException {        
         Hashtable<String, String> fieldNumberTable = new Hashtable<String, String>(); 
         boolean reportRfResults = false;
         String responseMessage = "";
@@ -72,8 +78,7 @@ public class LabelDecoder {
         return responseMessage;
     }
 
-    private static String GenerateRandomTID(){
-        Random rand = new Random();
+    private static String GenerateRandomTID(){        
         String characters = "ABCDEF0123456789";
         String tid = "";
         for (int i = 0; i < 16; i++) {
@@ -83,7 +88,6 @@ public class LabelDecoder {
     }
 
     private static String SimulatePrintSuccess(){
-        Random rand = new Random();
         String result = "";
         int roll = rand.nextInt(100) + 1;
         if (roll >= settings.tagSuccessChance) {

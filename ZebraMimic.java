@@ -1,8 +1,9 @@
 public class ZebraMimic {    
     public static void main(String[] args){
         Settings settings = new Settings();
-        settings.createCommandLineOptions(args); 
-        ConnectionManager connectionManager = new ConnectionManager();       
+        ArgumentParser parser = new ArgumentParser();
+        settings = parser.createCommandLineOptions(args); 
+        ConnectionManager connectionManager = new ConnectionManager(settings);       
         connectionManager.startServer();
     }
 

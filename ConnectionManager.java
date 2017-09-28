@@ -14,6 +14,13 @@ public class ConnectionManager {
     private int bufferSize = 1024;
     private InputStream inputStream = null;
     private Settings settings = new Settings();
+    private LabelDecoder decoder;
+
+    public ConnectionManager(Settings _settings){
+        settings = _settings;
+        decoder = new LabelDecoder(settings);
+    }
+
     public void startServer(){
         try {
             ServerSocket input = new ServerSocket(settings.port);
@@ -37,7 +44,7 @@ public class ConnectionManager {
                             System.out.println("*** EOM ***" + read);
                             String joinedMessage = String.join("", messageList);
                             //System.out.println(joinedMessage);
-                            String returnMessage = MessageDecoder.parse(joinedMessage);
+                            String returnMessage = parse(joinedMessage);
                             OutputStream outputStream = connectionSocket.getOutputStream();
                             OutputStreamWriter streamWriter = new OutputStreamWriter(outputStream);
                             BufferedWriter writer = new BufferedWriter(streamWriter);
@@ -59,5 +66,24 @@ public class ConnectionManager {
         catch (Exception e){
             System.out.println("Error: " + e);
         }
+    }
+
+    public String parse(String message) {
+        String response = "";
+        if (message.contains("~HS")){
+            // parse status message
+            System.out.println("Generating Status Message...");
+            response = PrinterStatus.generateStatusMessage();
+        }
+        if (message.contains("^XA")){
+            // result message
+            try {
+                response = decoder.parseLabel(message);
+            }
+            catch (Exception e) {
+                System.out.println("Could not parse label");
+            }
+        }        
+        return response;
     }
 }
