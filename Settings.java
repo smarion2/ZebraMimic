@@ -1,18 +1,18 @@
 import org.apache.commons.cli.*;
 public class Settings {
     // these will be defaul settings and can be configured with command line options. Soon^tm
-    public static int tagSuccessChance = 90;
-    public static int tagsPerSpool = 500;
-    public static int port = 9100;
-    public static int sleepTimer = 1000;
-    public static boolean simulateSleep = false;
-    public static boolean createTagImages = false;
-    public static boolean createLogFile = false;
-    public static boolean simulatePaperOut = false;
-    public static boolean simulateTagVoids = false;
+    public int tagSuccessChance = 90;
+    public int tagsPerSpool = 500;
+    public int port = 9100;
+    public int sleepTimer = 1000;
+    public boolean simulateSleep = false;
+    public boolean createTagImages = false;
+    public boolean createLogFile = false;
+    public boolean simulatePaperOut = false;
+    public boolean simulateTagVoids = false;
 
-    private static Options options = new Options();
-    public static void createCommandLineOptions(String[] args){
+    private Options options = new Options();
+    public void createCommandLineOptions(String[] args){
         Option help = new Option("help", "This project will attempt to emulate a zebra printer");
         Option createImages = new Option("i", "Create png images of the tags printed");
         Option log = new Option("l", "Create log file of tags printed");

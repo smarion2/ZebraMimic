@@ -10,13 +10,13 @@ import java.util.List;
 
 public class ConnectionManager {
 
-    private static boolean whileConnected = true; 
-    private static int bufferSize = 1024;
-    private static InputStream inputStream = null;
-
-    public static void startServer(){
+    private boolean whileConnected = true; 
+    private int bufferSize = 1024;
+    private InputStream inputStream = null;
+    private Settings settings = new Settings();
+    public void startServer(){
         try {
-            ServerSocket input = new ServerSocket(Settings.port);
+            ServerSocket input = new ServerSocket(settings.port);
             System.out.println("Starting server...");
 
             while (whileConnected){

@@ -3,6 +3,7 @@ import java.util.Random;
 
 public class LabelDecoder {
     private static int labelNumber = 0;
+    private static Settings settings = new Settings();
     public static String parseLabel(String label) throws InterruptedException {        
         Hashtable<String, String> fieldNumberTable = new Hashtable<String, String>(); 
         boolean reportRfResults = false;
@@ -12,7 +13,7 @@ public class LabelDecoder {
         String hvString = "";
         labelNumber++;
 
-        if (Settings.createTagImages){
+        if (settings.createTagImages){
             CreateTagImage.queryAPI(label, Integer.toString(labelNumber));
         }
         
@@ -55,7 +56,7 @@ public class LabelDecoder {
             }
         }
         if (reportRfResults == true){
-            if (Settings.simulateTagVoids == true){
+            if (settings.simulateTagVoids == true){
                 responseMessage += SimulatePrintSuccess();
             }
             else {
@@ -65,8 +66,8 @@ public class LabelDecoder {
         if (hvString != ""){
             responseMessage += hvString;
         }        
-        if (Settings.simulateSleep){
-            Thread.sleep(Settings.sleepTimer);
+        if (settings.simulateSleep){
+            Thread.sleep(settings.sleepTimer);
         }        
         return responseMessage;
     }
@@ -85,7 +86,7 @@ public class LabelDecoder {
         Random rand = new Random();
         String result = "";
         int roll = rand.nextInt(100) + 1;
-        if (roll >= Settings.tagSuccessChance) {
+        if (roll >= settings.tagSuccessChance) {
             result = "0+,0";
         }
         else {
