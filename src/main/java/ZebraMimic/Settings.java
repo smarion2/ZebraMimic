@@ -1,3 +1,4 @@
+package ZebraMimic;
 public class Settings {
     // these will be defaul settings and can be configured with command line options. Soon^tm
     public int tagSuccessChance = 90;

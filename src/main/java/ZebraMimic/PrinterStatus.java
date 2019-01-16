@@ -1,3 +1,4 @@
+package ZebraMimic;
 import java.io.*;
 
 public class PrinterStatus {

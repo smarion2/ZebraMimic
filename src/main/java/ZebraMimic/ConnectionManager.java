@@ -1,3 +1,4 @@
+package ZebraMimic;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -35,7 +36,7 @@ public class ConnectionManager {
                         System.out.println("Socket is connected!");
                     }
                     byte[] buffer = new byte[bufferSize];
-                    List<String> messageList = new ArrayList<>();
+                    List<String> messageList = new ArrayList<String>();
                     while((read = inputStream.read(buffer)) != -1){
                         String message = new String(buffer, "ASCII").trim();
                         messageList.add(message);
@@ -43,14 +44,16 @@ public class ConnectionManager {
                         if (read < bufferSize && read > 0){
                             System.out.println("*** EOM ***" + read);
                             String joinedMessage = String.join("", messageList);
-                            //System.out.println(joinedMessage);
+                            System.out.println(joinedMessage);
                             String returnMessage = parse(joinedMessage);
-                            OutputStream outputStream = connectionSocket.getOutputStream();
-                            OutputStreamWriter streamWriter = new OutputStreamWriter(outputStream);
-                            BufferedWriter writer = new BufferedWriter(streamWriter);
-                            System.out.println("Sending message: " + returnMessage);
-                            writer.write(returnMessage);
-                            writer.flush();
+                            if (returnMessage != "") {
+                                OutputStream outputStream = connectionSocket.getOutputStream();
+                                OutputStreamWriter streamWriter = new OutputStreamWriter(outputStream);
+                                BufferedWriter writer = new BufferedWriter(streamWriter);
+                                System.out.println("Sending message: " + returnMessage);
+                                writer.write(returnMessage);
+                                writer.flush();
+                            }
                             messageList.clear();
                         }
                     }

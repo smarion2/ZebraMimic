@@ -1,3 +1,4 @@
+package ZebraMimic;
 import java.util.Hashtable;
 import java.util.Random;
 

@@ -1,3 +1,4 @@
+package ZebraMimic;
 public class ZebraMimic {    
     public static void main(String[] args){
         Settings settings = new Settings();
